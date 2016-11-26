@@ -1,4 +1,13 @@
+// ANGULAR
 import { Component } from '@angular/core';
+
+
+// EXTERNAL
+
+
+// OWN
+
+
 
 @Component({
   selector: 'kw-app-root',

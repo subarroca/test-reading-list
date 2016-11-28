@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 
 
 // EXTERNAL
-import { Observable, BehaviorSubject, Subscription } from 'rxjs/Rx';
+import { Observable, BehaviorSubject, Subject } from 'rxjs/Rx';
 
 
 // OWN
@@ -41,6 +41,20 @@ export class BookService {
       .subscribe(books => this.listSubject.next(books));
 
     return this.list$;
+  }
+
+  getBook(id: string) {
+    let itemSubject: Subject<Book> = new Subject<Book>();
+    let item$: Observable<Book> = Observable.from(itemSubject);
+
+    this.getBooks()
+      .filter(books => books.length > 0)
+      .subscribe(books => {
+        let book = books.find(book => book.id === id);
+        itemSubject.next(book)
+      });
+
+    return item$;
   }
 
   private watchGenresNames() {

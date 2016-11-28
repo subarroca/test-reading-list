@@ -1,3 +1,54 @@
-<p>
-  book works!
-</p>
+<a
+  class = go-back
+  [routerLink] = "['/books']">
+  See all books
+</a>
+
+<div class="holder">
+  <div class="error"
+    *ngIf = bookError>
+    Sorry, this book is not available  
+  </div>
+
+  <aside class="sidebar"
+    *ngIf = !bookError>
+    <h1>{{book?.name}}</h1>
+    
+    <img
+      class = cover
+      [src] = book?.cover/>
+    
+    <div class="author">
+      <img
+        class = avatar
+        [src] = book?.author.avatar/>
+      <span>{{book?.author.name}}</span>
+    </div>
+    
+    <div class="genre">
+      <span>{{book?.genre.name}}</span>
+      <span>{{book?.genre.category}}</span>
+    </div>
+    
+    <div class="details">
+      <span>❤ {{book?.likes}}</span>
+      <span>{{book?.timeAgo}}</span>
+    </div>
+  </aside>
+  
+  <div class="content"
+    *ngIf = !bookError>
+    <div
+      class = description>
+      {{book?.description}}
+    </div>
+    
+    <div>
+      <p
+        *ngFor = "let intro of book?.introduction"
+        class = fragment>
+        {{intro.content}}
+      </p>
+    </div>
+  </div>
+</div>

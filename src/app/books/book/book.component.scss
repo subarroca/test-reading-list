@@ -1,0 +1,82 @@
+@import 'src/assets/styles/vars';
+
+.go-back{
+  color: $primary;
+  margin: 2*$grid-gutter;
+  display: inline-block;
+}
+
+.holder{
+  display: flex;
+}
+
+.sidebar{
+  width: 25%;
+}
+
+.error{
+  text-align: center;
+  margin: 4*$grid-gutter;
+}
+
+
+.content{
+  width: 75%;
+}
+
+.sidebar,
+.content{
+  padding: 2*$grid-gutter;
+}
+
+
+// sidebar
+h1{
+  font-size: 2.5em;
+  margin-bottom: 4*$grid-gutter;
+}
+
+.cover{
+  max-width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,.5);
+}
+
+.details{
+  display: flex;
+  justify-content: space-between;
+}
+
+.genre,
+.details,
+.author{
+  margin: 4*$grid-gutter 0;
+}
+
+
+// author
+.author{
+  display: flex;
+  align-items: center;
+  padding-bottom: 2*$grid-gutter;
+  border-bottom: 1px dotted $primary;
+}
+
+.avatar{
+  border-radius: 50%;
+  max-width: 80px;
+  display: block;
+  margin-right: 2*$grid-gutter;
+}
+
+
+// content
+.description{
+  border-bottom: 1px dotted $primary;
+  color: $primary;
+  padding-bottom: 4*$grid-gutter;
+  font-size: 1.5em;
+}
+
+.fragment{
+  padding: 2*$grid-gutter 0;
+}

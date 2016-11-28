@@ -1,8 +1,8 @@
-@import 'src/assets/styles/colors';
+@import 'src/assets/styles/vars';
 
 .book-filter{
   border-bottom: 2px solid $primary;
-  padding: 16px;
+  padding: 2*$grid-gutter;
 }
 
 .book-list{
@@ -68,12 +68,12 @@
 .pagination{
   margin: auto;
   text-align: center;
-  padding: 16px;
+  padding: 2*$grid-gutter;
 
   li{
     display: inline-block;
-    line-height: 42px;
-    width: 42px;
+    line-height: $tap-size;
+    width: $tap-size;
     border-radius: 50%;
     cursor: pointer;
 

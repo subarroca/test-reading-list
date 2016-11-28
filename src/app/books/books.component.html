@@ -41,6 +41,7 @@
   class = book-list>
   <a
     *ngFor = "let book of booksPage"
+    [routerLink] = "['/book', book.id]"
     class = book>
     <figure>
       <img
@@ -72,12 +73,19 @@
     </figure></a>
 </div>
 
-<ul
+<div
   class = pagination>
-  <li
-    *ngFor = "let fake of pageArray; let page = index"
-    (click) = "loadPage(page + 1)"
-    [class.active] = "page + 1 === pageNumber">
-    {{page + 1}}
-  </li>
-</ul>
+  <span
+    *ngIf = "booksPage.length === 0">
+    No matching, try another search
+  </span>
+  
+  <ul>
+    <li
+      *ngFor = "let fake of pageArray; let page = index"
+      (click) = "loadPage(page + 1)"
+      [class.active] = "page + 1 === pageNumber">
+      {{page + 1}}
+    </li>
+  </ul>
+</div>

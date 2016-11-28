@@ -18,7 +18,8 @@
       "prefix": "kw",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "../node_modules/reset-css/reset.css",
+        "assets/styles/styles.scss"
       ],
       "scripts": [],
       "environments": {
@@ -41,7 +42,7 @@
     }
   },
   "defaults": {
-    "styleExt": "sass",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

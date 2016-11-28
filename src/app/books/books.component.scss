@@ -1,0 +1,84 @@
+@import 'src/assets/styles/colors';
+
+.book-filter{
+  border-bottom: 2px solid $primary;
+  padding: 16px;
+}
+
+.book-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book{
+  position: relative;
+  width: 23%;
+  margin: 1%;
+  box-shadow: 0 4px 10px rgba(0,0,0,.5);
+  cursor: pointer;
+}
+
+.cover{
+  max-width: 100%;
+  height: auto;
+}
+
+.cover-info{
+  transition: background .2s;
+  background: linear-gradient(to top, rgba(0,0,0,.8), transparent);
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+
+  &:hover{
+    background: linear-gradient(to top, rgba($primary,.8), transparent);
+  }
+}
+
+.name,
+.author,
+.details{
+  padding: 10px;
+}
+
+.name{
+  font-size: 2em;
+}
+
+.author{
+  font-size: 1.2em;
+}
+
+.details{
+  display: flex;
+  justify-content: space-between;
+} 
+
+.likes,
+.time-ago{
+  font-size: .85em;
+}
+
+.pagination{
+  margin: auto;
+  text-align: center;
+  padding: 16px;
+
+  li{
+    display: inline-block;
+    line-height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.active{
+      background: $primary;
+    }
+  }
+}

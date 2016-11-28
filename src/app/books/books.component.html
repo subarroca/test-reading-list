@@ -1,3 +1,83 @@
-<p>
-  books works!
-</p>
+<form
+  class = book-filter
+  [formGroup] = filterForm>
+  <span>Find best</span>
+  <select
+    formControlName = genreCategory>
+    <option
+      selected
+      value = ''>
+      - Select an option -
+    </option>
+    <option
+      *ngFor = "let category of genreCategories"
+      [value] = category>
+      {{category}}
+    </option>
+  </select>
+
+  <span>about</span>
+  <select
+    formControlName = genreName>
+    <option
+      selected
+      value = ''>
+      - Select an option -
+    </option>
+    <option
+      *ngFor = "let name of genreNames"
+      [value] = name>
+      {{name}}
+    </option>
+  </select>
+
+  <input
+    formControlName = query
+    type = text
+    placeholder = search>
+</form>
+
+<div
+  class = book-list>
+  <a
+    *ngFor = "let book of booksPage"
+    class = book>
+    <figure>
+      <img
+        class = cover
+        [src] = book.cover>
+      <figcaption
+        class = cover-info>
+        <h4
+          class = name>
+          {{book.name}}
+        </h4>
+        <span
+          class = author>
+          {{book.author.name}}
+        </span>
+        <div
+          class = details>
+          <span
+            class = likes>
+            ❤
+            {{book.likes}}
+          </span>
+          <span
+            class = time-ago>
+            {{book.timeAgo}}
+          </span>
+        </div>
+      </figcaption>
+    </figure></a>
+</div>
+
+<ul
+  class = pagination>
+  <li
+    *ngFor = "let fake of pageArray; let page = index"
+    (click) = "loadPage(page + 1)"
+    [class.active] = "page + 1 === pageNumber">
+    {{page + 1}}
+  </li>
+</ul>

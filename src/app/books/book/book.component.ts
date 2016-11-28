@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'kw-book',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.sass']
+  styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
 

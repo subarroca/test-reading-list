@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // EXTERNAL
@@ -14,15 +14,16 @@ import { HttpModule } from '@angular/http';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     HttpModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
-  declarations: [],
+  declarations: [
+  ],
   exports: [
     RouterModule,
     HttpModule,
-    FormsModule
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

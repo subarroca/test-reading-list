@@ -15,15 +15,6 @@ import { Book } from './book';
 
 @Injectable()
 export class BookService {
-
-  constructor(
-    private http: Http
-  ) {
-    this.watchGenresNames();
-    this.watchGenresCategories();
-  }
-
-
   listSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
   list$: Observable<Book[]> = Observable.from(this.listSubject);
 
@@ -33,6 +24,14 @@ export class BookService {
   genreCategoriesSubject: BehaviorSubject<Set<string>> = new BehaviorSubject<Set<string>>(new Set());
   genreCategories$: Observable<Set<string>> = Observable.from(this.genreCategoriesSubject);
 
+
+
+  constructor(
+    private http: Http
+  ) {
+    this.watchGenresNames();
+    this.watchGenresCategories();
+  }
 
   getBooks() {
     this.http.get(environment.booksUrl)
@@ -50,8 +49,8 @@ export class BookService {
     this.getBooks()
       .filter(books => books.length > 0)
       .subscribe(books => {
-        let book = books.find(book => book.id === id);
-        itemSubject.next(book)
+        let foundBook = books.find(book => book.id === id);
+        itemSubject.next(foundBook);
       });
 
     return item$;

@@ -65,7 +65,7 @@ export class Book {
   }
 
   match(filter) {
-    let matches: boolean = true;
+    let matches = true;
     if (filter.genreName && filter.genreName.length) {
       matches = matches && this.genre.name === filter.genreName;
     }
@@ -76,9 +76,9 @@ export class Book {
       let query = filter.query.toLowerCase();
 
       matches = matches
-        && ((this.name.toLowerCase().search(filter.query) > -1)
-          // || (this.description.toLowerCase().search(filter.query) > -1)
-          || (this.author.name.toLowerCase().search(filter.query) > -1));
+        && ((this.name.toLowerCase().search(query) > -1)
+          // || (this.description.toLowerCase().search(query) > -1)
+          || (this.author.name.toLowerCase().search(query) > -1));
     }
     return matches;
   }

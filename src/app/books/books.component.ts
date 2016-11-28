@@ -22,8 +22,6 @@ export class BooksComponent implements OnInit {
   private filteredBooks: Book[];
   private booksPage: Book[];
 
-  private filters: {};
-
   private genreNames: Set<string>;
   private genreCategories: Set<string>;
 

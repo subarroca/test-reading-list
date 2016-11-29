@@ -1,9 +1,10 @@
 // ANGULAR
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
 // EXTERNAL
+import { Subscription } from 'rxjs/Rx';
 
 
 // OWN
@@ -16,10 +17,16 @@ import { Book } from '../shared/book';
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })
-export class BookComponent implements OnInit {
+export class BookComponent implements OnInit, OnDestroy {
   book: Book;
 
   bookError: boolean = false;
+
+
+  book$$: Subscription;
+  params$$: Subscription;
+
+
 
   constructor(
     private bookService: BookService,
@@ -28,9 +35,13 @@ export class BookComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params
-      .subscribe(params =>
-        this.bookService.getBook(params['id'])
+    this.params$$ = this.activatedRoute.params
+      .subscribe(params => {
+        if (this.book$$) {
+          this.book$$.unsubscribe();
+        }
+
+        this.book$$ = this.bookService.getBook(params['id'])
           .subscribe(book => {
             if (book && book.id) {
               this.book = book;
@@ -38,8 +49,17 @@ export class BookComponent implements OnInit {
             } else {
               this.bookError = true;
             }
-          })
-      );
+          });
+      });
+  }
+
+  ngOnDestroy() {
+    if (this.params$$) {
+      this.params$$.unsubscribe();
+    }
+    if (this.book$$) {
+      this.book$$.unsubscribe();
+    }
   }
 
 }

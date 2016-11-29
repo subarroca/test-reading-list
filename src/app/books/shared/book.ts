@@ -64,14 +64,19 @@ export class Book {
     return this.published.fromNow();
   }
 
+
+  // matches genre, author, name
   match(filter) {
     let matches = true;
+
     if (filter.genreName && filter.genreName.length) {
       matches = matches && this.genre.name === filter.genreName;
     }
+
     if (filter.genreCategory && filter.genreCategory.length) {
       matches = matches && this.genre.category === filter.genreCategory;
     }
+
     if (filter.query) {
       let query = filter.query.toLowerCase();
 

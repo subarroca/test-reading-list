@@ -11,6 +11,7 @@ import { HttpModule } from '@angular/http';
 // OWN
 
 
+// This module should contain buttons, icons, and everything to be shared throughout the project
 @NgModule({
   imports: [
     CommonModule,

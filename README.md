@@ -1,4 +1,11 @@
-# TestReadingList
+# Test Reading List
+
+This project is intended as an angular2 with observables test.
+It is not responsive, styling is basic and has no animations as it was not the purpose of it though I've tried to get some beauty of it.
+As the project grows books & book component must be fragmented into smaller components
+
+
+## Generation
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 

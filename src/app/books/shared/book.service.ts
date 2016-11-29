@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 
 
 // EXTERNAL
-import { Observable, BehaviorSubject, Subject } from 'rxjs/Rx';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 
 // OWN
@@ -17,6 +17,9 @@ import { Book } from './book';
 export class BookService {
   listSubject: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
   list$: Observable<Book[]> = Observable.from(this.listSubject);
+
+  itemSubject: BehaviorSubject<Book> = new BehaviorSubject<Book>(new Book());
+  item$: Observable<Book> = Observable.from(this.itemSubject);
 
   genreNamesSubject: BehaviorSubject<Set<string>> = new BehaviorSubject<Set<string>>(new Set());
   genreNames$: Observable<Set<string>> = Observable.from(this.genreNamesSubject);
@@ -34,28 +37,31 @@ export class BookService {
   }
 
   getBooks() {
-    this.http.get(environment.booksUrl)
-      .map(info => this.parseResponse(info))
-      .map(books => this.parseBooks(books))
-      .subscribe(books => this.listSubject.next(books));
+    // only if we have no books loaded get the list
+    if (this.listSubject.getValue().length === 0) {
+      this.http.get(environment.booksUrl)
+        .map(info => this.parseResponse(info))
+        .map(books => this.parseBooks(books))
+        .first()
+        .subscribe(books => this.listSubject.next(books));
+    }
 
     return this.list$;
   }
 
   getBook(id: string) {
-    let itemSubject: Subject<Book> = new Subject<Book>();
-    let item$: Observable<Book> = Observable.from(itemSubject);
-
     this.getBooks()
       .filter(books => books.length > 0)
+      .first()
       .subscribe(books => {
-        let foundBook = books.find(book => book.id === id);
-        itemSubject.next(foundBook);
+        this.itemSubject.next(books.find(book => book.id === id));
       });
 
-    return item$;
+    return this.item$;
   }
 
+
+  // watchers to get a list of available genres
   private watchGenresNames() {
     this.list$
       .subscribe((books: Book[]) =>
@@ -69,6 +75,8 @@ export class BookService {
   }
 
 
+
+  // parsers
   parseResponse(resp: Response) {
     return resp.json();
   }

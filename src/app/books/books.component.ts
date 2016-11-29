@@ -43,6 +43,9 @@ export class BooksComponent implements OnInit, OnDestroy {
   });
 
   private filterForm$$: Subscription;
+  private books$$: Subscription;
+  private genreNames$$: Subscription;
+  private genreCategories$$: Subscription;
 
 
   // Pagination
@@ -60,8 +63,7 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // get book list
-    this.bookService.getBooks()
-      .first()
+    this.books$$ = this.bookService.getBooks()
       .subscribe(books => {
         this.books = books;
         this.filteredBooks = books;
@@ -69,12 +71,10 @@ export class BooksComponent implements OnInit, OnDestroy {
       });
 
     // retrieve data for selects
-    this.bookService.genreNames$
-      .first()
+    this.genreNames$$ = this.bookService.genreNames$
       .subscribe((names: Set<string>) => this.genreNames = names);
 
-    this.bookService.genreCategories$
-      .first()
+    this.genreCategories$$ = this.bookService.genreCategories$
       .subscribe((categories: Set<string>) => this.genreCategories = categories);
 
     // on any change in form parse filtering again
@@ -91,6 +91,15 @@ export class BooksComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.filterForm$$) {
       this.filterForm$$.unsubscribe();
+    }
+    if (this.books$$) {
+      this.books$$.unsubscribe();
+    }
+    if (this.genreNames$$) {
+      this.genreNames$$.unsubscribe();
+    }
+    if (this.genreCategories$$) {
+      this.genreCategories$$.unsubscribe();
     }
   }
 

@@ -14,9 +14,10 @@
     *ngIf = !bookError>
     <h1>{{book?.name}}</h1>
     
-    <img
-      class = cover
-      [src] = book?.cover/>
+    <div class="cover">
+      <img
+        [src] = book?.cover/>
+      </div>
     
     <div class="author">
       <img

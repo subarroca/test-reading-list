@@ -6,3 +6,16 @@
 body{
   font-family: 'Sanchez', serif;
 }
+
+body,
+kw-app-root,
+.loading{
+  min-height: 100vh;
+}
+
+.loading{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,40 +1,49 @@
 <form
   class = book-filter
   [formGroup] = filterForm>
-  <span>Find best</span>
-  <select
-    formControlName = genreCategory>
-    <option
-      selected
-      value = ''>
-      - Select an option -
-    </option>
-    <option
-      *ngFor = "let category of genreCategories"
-      [value] = category>
-      {{category}}
-    </option>
-  </select>
+  <div
+    class = field>
+    <span>Find best</span>
+    <select
+      formControlName = genreCategory>
+      <option
+        selected
+        value = ''>
+        - Select an option -
+      </option>
+      <option
+        *ngFor = "let category of genreCategories"
+        [value] = category>
+        {{category}}
+      </option>
+    </select>
+  </div>
 
-  <span>about</span>
-  <select
-    formControlName = genreName>
-    <option
-      selected
-      value = ''>
-      - Select an option -
-    </option>
-    <option
-      *ngFor = "let name of genreNames"
-      [value] = name>
-      {{name}}
-    </option>
-  </select>
+  <div
+    class = field>
+    <span>about</span>
+    <select
+      formControlName = genreName>
+      <option
+        selected
+        value = ''>
+        - Select an option -
+      </option>
+      <option
+        *ngFor = "let name of genreNames"
+        [value] = name>
+        {{name}}
+      </option>
+    </select>
+  </div>
 
-  <input
-    formControlName = query
-    type = text
-    placeholder = search>
+  <div
+    class = field>
+    <input
+      formControlName = query
+      type = text
+      placeholder = search>
+  </div>
 </form>
 
 <div

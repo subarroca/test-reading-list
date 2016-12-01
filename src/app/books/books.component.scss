@@ -1,10 +1,48 @@
 @import 'src/assets/styles/vars';
 
+
+// filters
 .book-filter{
-  border-bottom: 2px solid $primary;
-  padding: 2*$grid-gutter;
+  border-bottom: 1px dotted $primary;
+  padding: $grid-gutter;
+  display: flex;
+  flex-wrap: wrap;
+  
+  @media (min-width: $sm) {
+    flex-wrap: nowrap;
+  }
 }
 
+.field{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: $grid-gutter;
+  justify-content: space-between;
+
+  @media (min-width: $sm) {
+    width: 33%;
+    justify-content: flex-start;
+  }
+}
+
+select,
+input{
+  @media (min-width: $sm) {
+    margin-left: $grid-gutter;
+  }
+}
+
+select{
+  width: 50%;
+}
+
+input{
+  width: 100%;
+}
+
+
+// list
 .book-list{
   display: flex;
   flex-wrap: wrap;
@@ -12,10 +50,19 @@
 
 .book{
   position: relative;
-  width: 23%;
-  margin: 1%;
   box-shadow: 0 4px 10px rgba(0,0,0,.5);
   cursor: pointer;
+  margin: 2%;
+  width: 46%;
+  
+  @media (min-width: $sm) {
+    margin: 1.5%;
+    width: 30.3%;
+  }
+  @media (min-width: $md) {
+    margin: 1%;
+    width: 23%;
+  }
 }
 
 .cover{
@@ -48,11 +95,22 @@
 }
 
 .name{
-  font-size: 2em;
+  word-wrap: break-word;
+  font-size: 1.5em;
+
+  @media (min-width: $sm) {
+    font-size: 1.65em;
+  }
+
+  @media (min-width: $md) {
+    font-size: 1.8em;
+  }
 }
 
-.author{
-  font-size: 1.2em;
+.author{  
+  @media (min-width: $sm) {
+    font-size: 1.2em;
+  }
 }
 
 .details{
@@ -65,6 +123,8 @@
   font-size: .85em;
 }
 
+
+// pagination
 .pagination{
   margin: auto;
   text-align: center;
@@ -77,8 +137,13 @@
     border-radius: 50%;
     cursor: pointer;
 
+    &:hover{
+      background: rgba($primary, .3);
+    }
+
     &.active{
       background: $primary;
+      color: #fff;
     }
   }
 }
